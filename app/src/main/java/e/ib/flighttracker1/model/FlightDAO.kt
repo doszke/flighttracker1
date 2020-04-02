@@ -12,4 +12,10 @@ data class FlightDAO(
     val estDepartureAirportVertDistance : Int,
     val estArrivalAirportVertDistance : Int,
     val departureAirportCandidatesCount : Int,
-    val arrivalAirportCandidatesCount : Int)
+    val arrivalAirportCandidatesCount : Int) {
+
+
+    override fun toString(): String {
+        return "FlightDAO(icao24='$icao24', firstSeen=$firstSeen, estDepartureAirport=$estDepartureAirport, lastSeen=$lastSeen, estArrivalAirport=$estArrivalAirport, callsign=$callsign, estDepartureAirportHorizDistance=$estDepartureAirportHorizDistance, estArrivalAirportHorizDistance=$estArrivalAirportHorizDistance, estDepartureAirportVertDistance=$estDepartureAirportVertDistance, estArrivalAirportVertDistance=$estArrivalAirportVertDistance, departureAirportCandidatesCount=$departureAirportCandidatesCount, arrivalAirportCandidatesCount=$arrivalAirportCandidatesCount)"
+    }
+}

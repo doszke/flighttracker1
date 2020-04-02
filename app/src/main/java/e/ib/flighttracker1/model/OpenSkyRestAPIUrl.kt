@@ -10,6 +10,9 @@ object OpenSkyRestAPIUrl {
     private const val flightsAll = "/flights/all"
     private const val statesAll = "/states/all"
     private const val flightsAircraft = "/flights/aircraft"
+    private const val flightsArrival = "/flights/arrival"
+    private const val flightsDeparture = "/flights/departure"
+    private const val track = "/tracks"
 
     private var isInitialized = false
 
@@ -32,8 +35,20 @@ object OpenSkyRestAPIUrl {
         return UriComponentsBuilder.fromHttpUrl(root + statesAll)
     }
 
-    fun flightsAircraftsUriComponentsBuilder(): UriComponentsBuilder {
+    fun flightsAircraftUriComponentsBuilder(): UriComponentsBuilder {
         return UriComponentsBuilder.fromHttpUrl(root + flightsAircraft)
+    }
+
+    fun flightsArrivalUriComponentsBuilder(): UriComponentsBuilder {
+        return UriComponentsBuilder.fromHttpUrl(root + flightsArrival)
+    }
+
+    fun flightsDepartureUriComponentsBuilder(): UriComponentsBuilder {
+        return UriComponentsBuilder.fromHttpUrl(root + flightsDeparture)
+    }
+
+    fun trackUriComponentsBuilder(): UriComponentsBuilder {
+        return UriComponentsBuilder.fromHttpUrl(root + track)
     }
 
 }
