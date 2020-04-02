@@ -7,8 +7,9 @@ import java.util.*
 object OpenSkyRestAPIUrl {
 
     private var root : String = ""
-    private val flightsAll = "/flights/all"
-    private val statesAll = "/states/all"
+    private const val flightsAll = "/flights/all"
+    private const val statesAll = "/states/all"
+    private const val flightsAircraft = "/flights/aircraft"
 
     private var isInitialized = false
 
@@ -29,6 +30,10 @@ object OpenSkyRestAPIUrl {
 
     fun statesAllUriComponentsBuilder() : UriComponentsBuilder {
         return UriComponentsBuilder.fromHttpUrl(root + statesAll)
+    }
+
+    fun flightsAircraftsUriComponentsBuilder(): UriComponentsBuilder {
+        return UriComponentsBuilder.fromHttpUrl(root + flightsAircraft)
     }
 
 }

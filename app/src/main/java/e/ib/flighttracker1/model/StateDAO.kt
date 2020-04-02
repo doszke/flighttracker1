@@ -4,9 +4,15 @@ import java.util.*
 
 data class StateDAO(
     val time : Long,
-    val states : Array<Array<String>>? //response zwraca array róznych obiektów
+    val states : Array<Array<String>>? //response zwraca array arrayów róznych obiektów
 ) {
 
+    /*DAO state vector, inicjalizowane w dość paskudny sposób, tak wygląda response dla tego obiektu:
+{"time":1581668849,"states":[["3004c7","SIO512  ","Italy",1581668653,1581668675,13.323,43.6361,20604.48,false,157.41,77.74,-8.45,null,2019.3,"1000",false,0]]}
+    states może być nullem
+    states jest inicjalizowane 2d arrayem, przy próbie pobirania StateVectorDAO, pole jest inicjalizowane 2d arrayem
+    inicjalizacja pola w init blocku skutkuje zawsze nullem
+    */
     var stateVector : StateVectorDAO? = null
         get() {
             if (!initialized){

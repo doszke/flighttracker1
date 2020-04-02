@@ -1,6 +1,7 @@
 package e.ib.flighttracker1
 
 import android.os.AsyncTask
+import android.util.Log
 import com.google.gson.Gson
 import e.ib.flighttracker1.model.FlightDAO
 import e.ib.flighttracker1.model.OpenSkyRestAPIUrl
@@ -31,7 +32,22 @@ class StatesAllTask : AsyncTask<String, String, StateDAO>() {
         builder.queryParam("icao24", params[1])
         val uri = builder.build()
         val result = RestTemplateProvider.provide().getForObject(uri.toUriString(), String::class.java)
+        Log.d("resulttttt", result)
         val otp = gson.fromJson(result, StateDAO::class.java)
         return otp
     }
+}
+
+class FlightsAircraftTask : AsyncTask<String, String, StateDAO>() {
+    override fun doInBackground(vararg params: String?): StateDAO {
+        var builder = OpenSkyRestAPIUrl.flightsAircraftsUriComponentsBuilder()
+        builder.queryParam("time", params[0])
+        builder.queryParam("icao24", params[1])
+        val uri = builder.build()
+        val result = RestTemplateProvider.provide().getForObject(uri.toUriString(), String::class.java)
+        Log.d("resulttttt", result)
+        val otp = gson.fromJson(result, StateDAO::class.java)
+        return otp
+    }
+
 }

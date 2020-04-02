@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                         .get()
                 if (otp2.stateVector != null) {
                     tv.text = otp2.stateVector.toString() + otp2.toString()
-                    Log.d("DLA IZY", otp2.toString())
+                    Log.d("statevectordao", otp2.stateVector.toString())
                     break
                 }
             }
