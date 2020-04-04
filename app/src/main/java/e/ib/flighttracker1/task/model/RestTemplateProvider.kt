@@ -1,4 +1,4 @@
-package e.ib.flighttracker1.model
+package e.ib.flighttracker1.task.model
 
 import org.springframework.http.converter.StringHttpMessageConverter
 import org.springframework.web.client.RestTemplate

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "702726170843",
+    "firebase_url": "https://flighttracker-cc530.firebaseio.com",
+    "project_id": "flighttracker-cc530",
+    "storage_bucket": "flighttracker-cc530.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:702726170843:android:8ec9cc5b1316c6ea5344fe",
+        "android_client_info": {
+          "package_name": "e.ib.flighttracker1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "702726170843-hbtrpc3f23gim5dmaql5qlkc50cscb66.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "e.ib.flighttracker1",
+            "certificate_hash": "6c70a645303343f61eaf2bd5099f8f00c6565f93"
+          }
+        },
+        {
+          "client_id": "702726170843-koa9knb2tb2rundqocmij6hsi1rfpskv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnCVcxukAV6LObKTlazT96lBap3sORP3M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "702726170843-koa9knb2tb2rundqocmij6hsi1rfpskv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
