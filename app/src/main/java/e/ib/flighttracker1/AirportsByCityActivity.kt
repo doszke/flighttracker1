@@ -49,7 +49,7 @@ class AirportsByCityActivity : AppCompatActivity() {
                     row.addView(t3)
                     row.addView(btn)
 
-                    t1.text = a.codeIcaoAirport
+                    t1.text = a.codeIataAirport
                     t2.text = a.nameAirport
                     t3.text = a.nameCountry
                     city_t_layout.addView(row)

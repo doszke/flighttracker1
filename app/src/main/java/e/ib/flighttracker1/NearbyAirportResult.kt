@@ -58,7 +58,7 @@ class NearbyAirportResult : AppCompatActivity() {
                     row.addView(t4)
                     row.addView(btn)
 
-                    t1.text = a.codeIcaoAirport
+                    t1.text = a.codeIataAirport
                     t2.text = a.nameAirport
                     t3.text = a.nameCountry
                     t4.text = a.distance.toString()
@@ -69,7 +69,7 @@ class NearbyAirportResult : AppCompatActivity() {
             }
             val tv = findViewById<TextView>(R.id.nearest_error)
             tableLayout.visibility = View.INVISIBLE
-            tv.text = getString(R.string.error_no_airports_nearby)
+            tv.text = getString(R.string.error_no_flights)
         }
         MainActivity.throwableHandler.handle(ex)
     }

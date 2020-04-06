@@ -32,10 +32,11 @@ class TimetableTask : AsyncTask<Map<String, String>, String, Array<FlightSchedul
     override fun doInBackground(vararg params: Map<String, String>?): Array<FlightScheduleDAO> {
         val uri = AviationEdgeUriFactory.timetablesURI(params[0])
         val result = RestTemplateProvider.provide().getForObject(uri, String::class.java)
-        Log.d("XDDDDDDD", result)
+        Log.d("XDDDDDDDDD", uri)
         return try {
             gson.fromJson(result, Array<FlightScheduleDAO>::class.java)
         } catch (ex : JsonSyntaxException) {
+            Log.d("XDDDDDDDDD", ex.toString())
             arrayOf() //gdy nie ma lotów, zwraca FlightScheduleDAO z samymi nullami
         }
     }
@@ -48,7 +49,7 @@ class AutocompleteTask : AsyncTask<Map<String, String>, String, AirportsSearchRe
             val result = RestTemplateProvider.provide().getForObject(uri, String::class.java)
             return gson.fromJson(result, AirportsSearchResultDAO::class.java)
         } catch (t : Throwable) {
-            MainActivity.throwableHandler.handle(t)
+            Handler(Looper.getMainLooper()).post { MainActivity.throwableHandler.handle(t) }
         }
         return AirportsSearchResultDAO(arrayOf())
     }
@@ -62,7 +63,7 @@ class AirportFromIataTask : AsyncTask<Map<String, String>, String, AirportDAO>()
             Log.d("XDDDDDDDDD", result)
             return gson.fromJson(result, Array<AirportDAO>::class.java)[0]
         } catch (t : Throwable) {
-            MainActivity.throwableHandler.handle(t)
+            Handler(Looper.getMainLooper()).post { MainActivity.throwableHandler.handle(t) }
         }
         return AirportDAO.EMPTY
     }
@@ -79,6 +80,20 @@ class FlightTask : AsyncTask<Map<String, String>, String, Array<FlightTrackDAO>>
             Handler(Looper.getMainLooper()).post { MainActivity.throwableHandler.handle(t) }
         }
         return arrayOf()
+    }
+}
+
+class CityTask : AsyncTask<Map<String, String>, String, CityDAO>() {
+    override fun doInBackground(vararg params: Map<String, String>?): CityDAO {
+        try {
+            val uri = AviationEdgeUriFactory.citiesURI(params[0])
+            val result = RestTemplateProvider.provide().getForObject(uri, String::class.java)
+            Log.d("XDDDDDDDDD", result)
+            return gson.fromJson(result, Array<CityDAO>::class.java)[0]
+        } catch (t : Throwable) {
+            Handler(Looper.getMainLooper()).post { MainActivity.throwableHandler.handle(t) }
+        }
+        return CityDAO.EMPTY
     }
 }
 

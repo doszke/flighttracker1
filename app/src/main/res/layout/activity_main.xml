@@ -6,27 +6,24 @@
         android:gravity="center"
         android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/main_header"/>
-
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="@string/flight_tracker"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/email"/>
+    <EditText android:layout_width="200dp"
+              android:layout_height="wrap_content"
+              android:id="@+id/username"  android:inputType="textEmailAddress"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/password"/>
+    <EditText android:layout_width="200dp"
+              android:layout_height="wrap_content"
+              android:id="@+id/password"  android:inputType="textPassword"/>
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/nearest_airport"
-            android:onClick="nearestAirport"/>
+            android:id="@+id/login_button"
+            android:text="@string/log_in"
+            android:onClick="onClickLogin"/>
 
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="@string/nearest_airport_list"
-            android:onClick="nearestAirportList"/>
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/sign_up" android:onClick="onClickSignUp"/>
 
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="@string/flights_in_europe"
-            android:onClick="flights"/>
-
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="@string/airports_by_city"
-            android:onClick="airportByCity"/>
 
 
 

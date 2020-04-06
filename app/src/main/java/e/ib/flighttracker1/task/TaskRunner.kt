@@ -46,6 +46,17 @@ object TaskRunner {
         }
     }
 
+    fun cityFromIata(params : Map<String, String>) : CityDAO? {
+        return try {
+            val task = CityTask()
+            val otp = task.execute(params).get()
+            if (otp == CityDAO.EMPTY) null else otp
+        } catch (t : Throwable) {
+            handler.handle(t)
+            null
+        }
+    }
+
     fun airportFromIata(params : Map<String, String>) : AirportDAO? {
         return try {
             val task = AirportFromIataTask()

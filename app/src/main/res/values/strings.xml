@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name">FlightTracker1</string>
     <string name="main_header">Flight tracker</string>
+    <string name="show_on_map">Show on map</string>
     <string name="nearest_airport">Nearest airports on map</string>
     <string name="nearest_airport_list">List of nearest airports</string>
     <string name="distance_in_kilometers">Distance in kilometers:</string>
     <string name="search">Search</string>
-    <string name="icao">ICAO</string>
+    <string name="icao">IATA code</string>
     <string name="airport_name">Airport name</string>
     <string name="country">Country</string>
     <string name="distance_km">Distance [km]</string>
@@ -15,4 +16,17 @@
     <string name="flights_in_europe">Flights in Europe</string>
     <string name="airports_by_city">Airports by city</string>
     <string name="enter_the_city_name">Enter the city name</string>
+    <string name="title_activity_show_flight_on_map">Map</string>
+    <string name="log_in">Log in</string>
+    <string name="username">username:</string>
+    <string name="password">password:</string>
+    <string name="flight_tracker">Flight Tracker</string>
+    <string name="sign_up">You do not have an account? Sign up!</string>
+    <string name="su">Sign up</string>
+    <string name="email">email:</string>
+    <string name="repeat_password">repeat password:</string>
+    <string name="airline">Airline</string>
+    <string name="arrival_airport">Arrival airport</string>
+    <string name="departure_airport">Departure airport</string>
+    <string name="scheduled_departure_time">Scheduled departure time</string>
 </resources>

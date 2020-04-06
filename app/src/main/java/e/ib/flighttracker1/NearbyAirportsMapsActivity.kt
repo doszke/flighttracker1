@@ -42,7 +42,7 @@ class NearbyAirportsMapsActivity : FragmentActivity(), OnMapReadyCallback {
             val airport = TaskRunner.nearbyAirports(params)
             if (airport != null) {
                 for (a in airport) {
-                    if (a.nameAirport.toLowerCase().contains("railway")) continue
+                    if (a.nameAirport.toLowerCase().contains("rail") || a.nameAirport.toLowerCase().contains("bus")) continue
                     val marker = LatLng(a.latitudeAirport.toDouble(), a.longitudeAirport.toDouble())
                     mMap!!.addMarker(MarkerOptions().position(marker).title(a.codeIataAirport + " " + a.nameAirport + ", " + a.nameCountry))
                     mMap!!.addCircle(CircleOptions().center(LatLng(location.latitude, location.longitude)).radius(distance.toDouble()*1000))

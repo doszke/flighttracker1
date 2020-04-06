@@ -1,5 +1,7 @@
 package e.ib.flighttracker1.task.model
 
+import java.io.Serializable
+
 
 class AirportDAO(
     val GMT : Float,
@@ -15,8 +17,9 @@ class AirportDAO(
     val nameCountry : String,
     val phone : String,
     val timezone : String
-) {
+) : Serializable {
     companion object {
+        const val serialVersionUID = 1L
         val EMPTY  = AirportDAO(
             0f,
             "",

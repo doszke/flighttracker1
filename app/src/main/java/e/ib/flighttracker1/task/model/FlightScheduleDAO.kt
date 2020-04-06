@@ -3,7 +3,7 @@ package e.ib.flighttracker1.task.model
 data class FlightScheduleDAO(
     val airline: AirlineDAO,
     val arrival: ArrDepDAO,
-    val codeshared : String?,
+    val codeshared : FlightScheduleDAO?,
     val departure: ArrDepDAO,
     val flight : FlightDAO,
     val status : String,

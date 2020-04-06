@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_header"/>
+
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nearest_airport"
+            android:onClick="nearestAirport"/>
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="@string/nearest_airport_list"
+            android:onClick="nearestAirportList"/>
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="@string/flights_in_europe"
+            android:onClick="flights"/>
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="@string/airports_by_city"
+            android:onClick="airportByCity"/>
+
+
+
+</LinearLayout>

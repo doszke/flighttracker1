@@ -5,17 +5,26 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import e.ib.flighttracker1.task.TaskRunner
 import e.ib.flighttracker1.task.model.AviationEdgeUriFactory
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var emailEt : EditText
+    private lateinit var passwordEt : EditText
 
     companion object {
         val throwableHandler = ThrowableHandler.getInstance()
@@ -44,6 +53,9 @@ class MainActivity : AppCompatActivity() {
         AviationEdgeUriFactory.init(applicationContext)
         throwableHandler.applicationContext = applicationContext
         val db = Firebase.firestore
+        auth = FirebaseAuth.getInstance()
+        emailEt = findViewById(R.id.username)
+        passwordEt = findViewById(R.id.password)
 
         //location
 
@@ -110,32 +122,28 @@ class MainActivity : AppCompatActivity() {
         */
     }
 
-    fun nearestAirport(view : View) {
-        val intent = Intent(this, NearestAirportActivity::class.java)
-            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            .putExtra("userChoice", UserChoice.NEAREST_AIRPORT_MAP)
-        startActivity(intent)
+    fun onClickLogin(view : View) {
+        val email = emailEt.text.toString()
+        val password = passwordEt.text.toString()
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
+            if (task.isSuccessful) {
+                val user = auth.currentUser
+                val intent = Intent(this, LoggedActivity::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(
+                    baseContext, "Authentication failed.",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            }
+
+        }
     }
 
-    fun nearestAirportList(view : View) {
-        val intent = Intent(this, NearestAirportActivity::class.java)
-            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            .putExtra("userChoice", UserChoice.NEAREST_AIRPORT_LIST)
+    fun onClickSignUp(view: View) {
+        val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
     }
-
-    fun flights(view : View) {
-        val intent = Intent(this, FlightsActivity::class.java)
-            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        startActivity(intent)
-    }
-
-    fun airportByCity(view : View) {
-        val intent = Intent(this, AirportsByCityActivity::class.java)
-            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        startActivity(intent)
-    }
-
-
 
 }
