@@ -11,6 +11,7 @@ object AviationEdgeUriFactory {
     private var root: String = "https://aviation-edge.com/v2/public"
     private lateinit var key: String
 
+    private const val flight = "/flights"
     private const val nearby = "/nearby"
     private const val timetable = "/timetable"
     private const val autocomplete = "/autocomplete"
@@ -59,6 +60,13 @@ object AviationEdgeUriFactory {
     fun airportDatabaseURI(map: Map<String, String>?) : String {
         if (map != null) {
             val builder = UriComponentsBuilder.fromHttpUrl(root + airportDatabase)
+            return createUri(builder, map).toUriString()
+        } else throw Exception("Passed no arguments to UriFactory")
+    }
+
+    fun flightURI(map: Map<String, String>?) : String {
+        if (map != null) {
+            val builder = UriComponentsBuilder.fromHttpUrl(root + flight)
             return createUri(builder, map).toUriString()
         } else throw Exception("Passed no arguments to UriFactory")
     }

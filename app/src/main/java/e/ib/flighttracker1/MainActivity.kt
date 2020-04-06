@@ -2,11 +2,10 @@ package e.ib.flighttracker1
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Location
-import android.location.LocationManager
 import android.os.Bundle
-import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -14,9 +13,6 @@ import androidx.core.content.ContextCompat
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import e.ib.flighttracker1.task.model.AviationEdgeUriFactory
-import e.ib.flighttracker1.task.TaskFacade
-import e.ib.flighttracker1.task.async.AirportFromIataTask
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -47,12 +43,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         AviationEdgeUriFactory.init(applicationContext)
         throwableHandler.applicationContext = applicationContext
-
-
         val db = Firebase.firestore
 
         //location
-        val lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -64,15 +57,7 @@ class MainActivity : AppCompatActivity() {
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 100
             )
         }
-        val providers = lm.getProviders(true)
-        var location: Location? = null
-        for (provider in providers) {
-            var l = lm.getLastKnownLocation(provider)
-            if (l != null) {
-                location = l
-                break
-            }
-        }
+        /*
         Log.d("location", (location == null).toString())
         var longitude: Double = 0.0
         var latitude: Double = 0.0
@@ -87,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         map["distance"] = "60"
         //map["city"] = "wroc"
 
-        val s = TaskFacade.nearbyAirports(map)
+        val s = TaskRunner.nearbyAirports(map)
         if (s != null) {
             for (o in s) {
                 Log.d("output", o.toString())
@@ -97,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         map.clear()
         map["city"] = "wroc"
 
-        val a = TaskFacade.airportsByCity(map)
+        val a = TaskRunner.airportsByCity(map)
         if (a != null) {
             for (o in a.airportsByCities) {
                 Log.d("output", o.toString())
@@ -109,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         map["type"] = "departure"
         map["status"] = "active"
 
-        val c = TaskFacade.timetableForAirport(map)
+        val c = TaskRunner.timetableForAirport(map)
         if (c != null) {
             for (i in c) {
                 Log.d("output", i.toString())
@@ -118,9 +103,39 @@ class MainActivity : AppCompatActivity() {
 
         map.clear()
         map["codeIataAirport"] = "WRO"
-        val obj = TaskFacade.airportFromIata(map)
+        val obj = TaskRunner.airportFromIata(map)
         if (obj != null) {
             Log.d("outputnew", obj.toString())
         }
+        */
     }
+
+    fun nearestAirport(view : View) {
+        val intent = Intent(this, NearestAirportActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            .putExtra("userChoice", UserChoice.NEAREST_AIRPORT_MAP)
+        startActivity(intent)
+    }
+
+    fun nearestAirportList(view : View) {
+        val intent = Intent(this, NearestAirportActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            .putExtra("userChoice", UserChoice.NEAREST_AIRPORT_LIST)
+        startActivity(intent)
+    }
+
+    fun flights(view : View) {
+        val intent = Intent(this, FlightsActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
+    }
+
+    fun airportByCity(view : View) {
+        val intent = Intent(this, AirportsByCityActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
+    }
+
+
+
 }

@@ -1,15 +1,15 @@
 package e.ib.flighttracker1.task
 
-import e.ib.flighttracker1.task.async.AutocompleteTask
+import android.os.Handler
 import e.ib.flighttracker1.MainActivity
-import e.ib.flighttracker1.task.async.AirportFromIataTask
-import e.ib.flighttracker1.task.async.NearbyAirportTask
-import e.ib.flighttracker1.task.model.AirportDAO
-import e.ib.flighttracker1.task.model.AirportsSearchResultDAO
-import e.ib.flighttracker1.task.model.FlightScheduleDAO
-import e.ib.flighttracker1.task.async.TimetableTask
+import e.ib.flighttracker1.task.async.*
+import e.ib.flighttracker1.task.model.*
+import android.widget.Toast
+import android.os.Looper
 
-object TaskFacade {
+
+
+object TaskRunner {
 
     private val handler = MainActivity.throwableHandler
 
@@ -27,7 +27,8 @@ object TaskFacade {
     fun nearbyAirports(params : Map<String, String>) : Array<AirportDAO>? {
         return try {
             val task = NearbyAirportTask()
-            task.execute(params).get()
+            val otp = task.execute(params).get()
+            if (otp.isEmpty()) null else otp
         } catch (t : Throwable) {
             handler.handle(t)
             null
@@ -37,7 +38,8 @@ object TaskFacade {
     fun timetableForAirport(params : Map<String, String>) : Array<FlightScheduleDAO>? {
         return try {
             val task = TimetableTask()
-            task.execute(params).get()
+            val otp = task.execute(params).get()
+            if (otp.isEmpty()) null else otp
         } catch (t : Throwable) {
             handler.handle(t)
             null
@@ -50,6 +52,16 @@ object TaskFacade {
             task.execute(params).get()
         } catch (t : Throwable) {
             handler.handle(t)
+            null
+        }
+    }
+
+    fun flightsInRange(params : Map<String, String>) : Array<FlightTrackDAO>? {
+        return try {
+            val task = FlightTask()
+            task.execute(params).get()
+        } catch (t : Throwable) {
+            Handler(Looper.getMainLooper()).post(Runnable { handler.handle(t) })
             null
         }
     }

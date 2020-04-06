@@ -16,6 +16,23 @@ class AirportDAO(
     val phone : String,
     val timezone : String
 ) {
+    companion object {
+        val EMPTY  = AirportDAO(
+            0f,
+            "",
+            "",
+            "",
+            "",
+            0f,
+            0,
+            0f,
+            0f,
+            "",
+            "",
+            "",
+            ""
+        )
+    }
 
     override fun toString(): String {
         return "AirportDAO(GMT=$GMT, codeIataAirport='$codeIataAirport', codeIataCity='$codeIataCity', codeIcaoAirport='$codeIcaoAirport', codeIso2Country='$codeIso2Country', distance=$distance, geonameId=$geonameId, latitudeAirport=$latitudeAirport, longitudeAirport=$longitudeAirport, nameAirport='$nameAirport', nameCountry='$nameCountry', phone='$phone', timezone='$timezone')"

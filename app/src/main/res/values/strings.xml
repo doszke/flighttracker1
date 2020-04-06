@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">FlightTracker1</string>
+    <string name="main_header">Flight tracker</string>
+    <string name="nearest_airport">Nearest airports on map</string>
+    <string name="nearest_airport_list">List of nearest airports</string>
+    <string name="distance_in_kilometers">Distance in kilometers:</string>
+    <string name="search">Search</string>
+    <string name="icao">ICAO</string>
+    <string name="airport_name">Airport name</string>
+    <string name="country">Country</string>
+    <string name="distance_km">Distance [km]</string>
+    <string name="btn_nearby_txt">View available flights</string>
+    <string name="error_no_flights">There are no flights active for this airport</string>
+    <string name="error_no_airports_nearby">There are no airports in specified radius</string>
+    <string name="flights_in_europe">Flights in Europe</string>
+    <string name="airports_by_city">Airports by city</string>
+    <string name="enter_the_city_name">Enter the city name</string>
 </resources>
