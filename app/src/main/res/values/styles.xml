@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="rowStyle">
+        <item name="android:background">@drawable/textview_border</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
 </resources>

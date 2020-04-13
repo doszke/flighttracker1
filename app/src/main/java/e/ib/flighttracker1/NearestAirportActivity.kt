@@ -20,8 +20,12 @@ class NearestAirportActivity : AppCompatActivity() {
     fun searchAirport(view : View) {
         val choice = this.intent.getSerializableExtra("userChoice")
         val intent = when (choice) {
-            (UserChoice.NEAREST_AIRPORT_LIST) -> Intent(this, NearbyAirportResult::class.java)
-            (UserChoice.NEAREST_AIRPORT_MAP) -> Intent(this, NearbyAirportsMapsActivity::class.java)
+            (UserChoice.NEAREST_AIRPORT_LIST) -> { Intent(this, NearbyAirportResult::class.java) }
+            (UserChoice.NEAREST_AIRPORT_MAP) -> {
+                Intent(this, GoogleMapsActivity::class.java).apply {
+                    putExtra("mode", GoogleMapsMode.ALL_AIRPORTS_IN_RADIUS)
+                }
+            }
             else -> Intent(this, MainActivity::class.java)
         }
         intent.apply {

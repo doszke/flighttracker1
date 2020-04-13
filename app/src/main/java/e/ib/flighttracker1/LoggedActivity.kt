@@ -27,8 +27,8 @@ class LoggedActivity : AppCompatActivity() {
     }
 
     fun flights(view : View) {
-        val intent = Intent(this, FlightsActivity::class.java)
-            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        val intent = Intent(this, GoogleMapsActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).putExtra("mode", GoogleMapsMode.ALL_FLIGHTS_IN_RADIUS)
         startActivity(intent)
     }
 

@@ -2,9 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:gravity="center">
 
     <TextView
+            android:layout_margin="5dp"
             android:text="@string/enter_the_city_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -12,37 +14,45 @@
 
     <androidx.appcompat.widget.AppCompatEditText
             android:layout_width="200dp"
+            android:layout_margin="5dp"
             android:layout_height="wrap_content"
             android:id="@+id/city_et" />
 
     <Button
+            android:layout_margin="5dp"
             android:text="@string/search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/bttn"
             android:onClick="onBtnClickListener"/>
     <ScrollView
+            android:layout_margin="5dp"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:scrollbars="none"
             android:layout_weight="1">
     <TableLayout
+            android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/airports_t_layout">
 
         <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/header">
             <TextView
                     android:text="@string/icao"
+                    android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/textView4"/>
             <TextView
                     android:text="@string/airport_name"
+                    android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/textView3"/>
             <TextView
                     android:text="@string/country"
+                    android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/textView2"/>
             <TextView
+                    android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/textView9"/>
         </TableRow>

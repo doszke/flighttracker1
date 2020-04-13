@@ -2,6 +2,7 @@ package e.ib.flighttracker1.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
 import android.widget.TableRow
 
 class MyTableRow@JvmOverloads constructor(
@@ -9,5 +10,6 @@ class MyTableRow@JvmOverloads constructor(
 ) : TableRow(context, attrs) {
 
     lateinit var objs : Array<String?>
+
 
 }

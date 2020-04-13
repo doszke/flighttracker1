@@ -18,6 +18,7 @@ import com.google.firebase.ktx.Firebase
 import e.ib.flighttracker1.task.TaskRunner
 import e.ib.flighttracker1.task.model.AviationEdgeUriFactory
 import kotlinx.android.synthetic.main.activity_main.view.*
+import java.lang.IllegalStateException
 
 
 class MainActivity : AppCompatActivity() {
@@ -125,18 +126,26 @@ class MainActivity : AppCompatActivity() {
     fun onClickLogin(view : View) {
         val email = emailEt.text.toString()
         val password = passwordEt.text.toString()
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
-            if (task.isSuccessful) {
-                val user = auth.currentUser
-                val intent = Intent(this, LoggedActivity::class.java)
-                startActivity(intent)
-            } else {
-                Toast.makeText(
-                    baseContext, "Authentication failed.",
-                    Toast.LENGTH_SHORT
-                ).show()
+        try {
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    val intent = Intent(this, LoggedActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(
+                        baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
 
             }
+        } catch (ex : IllegalArgumentException) {
+            Toast.makeText(
+                baseContext, "Passed empty credential(s)",
+                Toast.LENGTH_SHORT
+            ).show()
 
         }
     }

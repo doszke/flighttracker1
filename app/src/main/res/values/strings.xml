@@ -21,12 +21,14 @@
     <string name="username">username:</string>
     <string name="password">password:</string>
     <string name="flight_tracker">Flight Tracker</string>
-    <string name="sign_up">You do not have an account? Sign up!</string>
+    <string name="sign_up">You do not have an account?\nSign up!</string>
     <string name="su">Sign up</string>
     <string name="email">email:</string>
     <string name="repeat_password">repeat password:</string>
     <string name="airline">Airline</string>
-    <string name="arrival_airport">Arrival airport</string>
-    <string name="departure_airport">Departure airport</string>
+    <string name="arrival_airport">Arrival airport code</string>
+    <string name="departure_airport">Departure airport code</string>
     <string name="scheduled_departure_time">Scheduled departure time</string>
+    <string name="action">Action</string>
+    <string name="sign_upp">Sign up</string>
 </resources>

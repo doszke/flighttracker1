@@ -2,13 +2,17 @@ package e.ib.flighttracker1
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.View
-import android.widget.Button
-import android.widget.TableLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import e.ib.flighttracker1.task.TaskRunner
 import e.ib.flighttracker1.view.MyTableRow
+import android.view.ViewGroup
+
+
+
+
 
 class FlightsResultActivity : AppCompatActivity() {
 
@@ -26,41 +30,33 @@ class FlightsResultActivity : AppCompatActivity() {
         if (airport != null) {
             for (a in airport) {
                 /*
-                 *response z /timetables ma IATA lotniska departure i arrival, z którego pozyskuje AirportDAO
-                 *response z /airports ma IATA miasta, z którego pozyskuje CityDAO
-                 *response z /cityDatabase ma nazwę miasta ... mało praktyczne
-                 *czasami IATA lotniska to też IATA miasta, ale nie jest to regułą
-                 *bardzo obciążające aplikację
+                 * Aby uzyskać nazwy miast departure i arrival z aviation-edge należy:
+                 * pobrać response z /timetables ma IATA lotniska departure i arrival, z którego pozyskuje AirportDAO
+                 * pobrać response z /airports ma IATA miasta, z którego pozyskuje CityDAO
+                 * pobrać response z /cityDatabase ma nazwę miasta ... mało praktyczne
+                 * czasami IATA lotniska to też IATA miasta, ale nie jest to regułą
+                 * bardzo obciążające aplikację - pozostaję przy kodach
+                 * mało user firendly, ale aplikacja nie wiesza się przy 5 row'ach
                  **/
-                val map = HashMap<String, String>()
-                map["codeIataAirport"] = a.arrival.iataCode ?: " "
-                val airportArrival = TaskRunner.airportFromIata(map)
-                map["codeIataAirport"] = a.departure.iataCode ?: " "
-                val airportDeparture = TaskRunner.airportFromIata(map)
-                map.clear()
-                map["codeIataCity"] = airportDeparture?.codeIataCity ?: ""
-                val airportDepartureCity = TaskRunner.cityFromIata(map)
-                map["codeIataCity"] = airportArrival?.codeIataCity ?: ""
-                val airportArrivalCity = TaskRunner.cityFromIata(map)
 
-                val t1 = TextView(this.applicationContext)
-                val t2 = TextView(this.applicationContext)
-                val t3 = TextView(this.applicationContext)
-                val t4 = TextView(this.applicationContext)
+                var row = MyTableRow(this.applicationContext)
 
-                val btn = Button(this.applicationContext)
-                val row = MyTableRow(this.applicationContext)
+                tableLayout.addView(row)
+
+
+                val t1 = TextView(applicationContext)
+                val t2 = TextView(applicationContext)
+                val t3 = TextView(applicationContext)
+                val t4 = TextView(applicationContext)
+
+                val btn = Button(applicationContext)
                 btn.setOnClickListener { onBtnClick(it) }
                 btn.text = resources.getText(R.string.show_on_map)
                 //zapisuje niezbędne pola obiektu do wykorzystania w następnym activity
                 //brzydki zabieg, ale nie będzie trzeba wysyłać ponownie 3 requestów do api
                 row.objs = arrayOf(
-                    airportDeparture?.latitudeAirport.toString(),
-                    airportDeparture?.longitudeAirport.toString(),
-                    airportArrival?.latitudeAirport.toString(),
-                    airportArrival?.longitudeAirport.toString(),
-                    airportDepartureCity?.nameCity,
-                    airportArrivalCity?.nameCity
+                    a.arrival.iataCode,
+                    a.departure.iataCode
                 )
 
                 row.addView(t1)
@@ -69,12 +65,12 @@ class FlightsResultActivity : AppCompatActivity() {
                 row.addView(t4)
                 row.addView(btn)
 
+
                 t1.text = a.airline.name
-                t2.text = airportArrivalCity?.nameCity
-                t3.text = airportDepartureCity?.nameCity
+                t2.text = a.departure.iataCode
+                t3.text = a.arrival.iataCode
                 t4.text = a.departure.scheduledTime?.replace("T", " ")?.replace(":00.000", "")
                 //workaround, DateTimeFormatter requires API 26, current is 19
-                tableLayout.addView(row)
             }
 
             return
@@ -89,13 +85,10 @@ class FlightsResultActivity : AppCompatActivity() {
         view as Button
         val row = view.parent as MyTableRow
         val objs = row.objs
-        val intent = Intent(this, ShowFlightOnMapActivity::class.java).apply{
-            putExtra("ad_lat", objs[0])
-            putExtra("ad_lng", objs[1])
-            putExtra("aa_lat", objs[2])
-            putExtra("aa_lng", objs[3])
-            putExtra("ad_name", objs[4])
-            putExtra("aa_name", objs[5])
+        val intent = Intent(this, GoogleMapsActivity::class.java).apply{
+            putExtra("a_iata", objs[0])
+            putExtra("d_iata", objs[1])
+            putExtra("mode", GoogleMapsMode.ONE_FLIGHT)
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         }
         startActivity(intent)

@@ -19,21 +19,26 @@
         <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
             <TextView
                     android:text="@string/icao"
+                    android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/textView4"/>
             <TextView
                     android:text="@string/airport_name"
+                    android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/textView3"/>
             <TextView
                     android:text="@string/country"
+                    android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/textView2"/>
             <TextView
                     android:text="@string/distance_km"
+                    android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/textView"/>
             <TextView
+                    android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/textView9"/>
         </TableRow>
